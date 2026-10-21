@@ -1,0 +1,1203 @@
+
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
+
+.rojo-ficha {
+  max-width: 600px;
+  width: 100%;
+  margin: 20px auto;
+  line-height: 1.5;
+}
+
+.rojo-ficha * {
+  box-sizing: border-box;
+}
+
+.rojo-ficha-titulo,
+.rojo-ficha-footer {
+  font-family: 'UnifrakturMaguntia', cursive;
+  text-align: center;
+  line-height: 1.3;
+  background: linear-gradient(to bottom, #640000 0%, #a00000 50%, #e32636 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #a00000;
+}
+
+.rojo-ficha-titulo {
+  font-size: 38px;
+  margin: 12px 0 18px;
+}
+
+.rojo-ficha-footer {
+  font-size: 27px;
+  margin: 20px 0 8px;
+  padding-top: 12px;
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(90deg, #640000, #a00000, #e32636, transparent) 1;
+}
+
+.rojo-ficha-spoiler {
+  margin-bottom: 10px;
+}
+
+.rojo-ficha-spoiler input {
+  display: none;
+}
+
+.rojo-ficha-spoiler label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 0;
+  background-image:
+    linear-gradient(90deg, #640000 0%, #a00000 35%, #e32636 65%, transparent 100%),
+    linear-gradient(90deg, #640000 0%, #a00000 35%, #e32636 65%, transparent 100%);
+  background-size: 100% 1px, 100% 1px;
+  background-position: top left, bottom left;
+  background-repeat: no-repeat;
+  padding: 8px 0;
+}
+
+.rojo-ficha-spoiler label:before {
+  content: "";
+  position: absolute;
+  inset: 1px 0;
+  background: linear-gradient(
+    90deg,
+    rgba(100, 0, 0, .96) 0%,
+    rgba(160, 0, 0, .78) 25%,
+    rgba(227, 38, 54, .48) 50%,
+    rgba(227, 38, 54, .18) 72%,
+    rgba(227, 38, 54, 0) 100%
+  );
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1s cubic-bezier(.22, .61, .36, 1), opacity .45s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.rojo-ficha-spoiler label:hover:before {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1s cubic-bezier(.22, .61, .36, 1), opacity .45s ease;
+}
+
+.rojo-ficha-tabimg {
+  display: block;
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  position: relative;
+  z-index: 0;
+  opacity: 1;
+  transition: opacity .8s ease, filter .8s ease;
+}
+
+.rojo-ficha-spoiler label:hover .rojo-ficha-tabimg {
+  opacity: .62;
+  filter: contrast(1.04);
+  transition: opacity .8s ease, filter .8s ease;
+}
+
+.rojo-ficha-labeltitulo {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: calc(100% - 65px);
+  transform: translate(-50%, -44%);
+  opacity: 0;
+  text-align: center;
+  color: #fff;
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 30px;
+  line-height: 1.2;
+  text-shadow: 0 0 5px #000, 0 0 12px #000;
+  transition: opacity .7s ease, transform .8s cubic-bezier(.22, .61, .36, 1);
+  pointer-events: none;
+}
+
+.rojo-ficha-spoiler label:hover .rojo-ficha-labeltitulo {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity .7s ease, transform .8s cubic-bezier(.22, .61, .36, 1);
+}
+
+.rojo-ficha-spoiler label:after {
+  content: "+";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #fff;
+  z-index: 3;
+  text-shadow: 0 0 4px #640000;
+  transition: opacity .5s ease;
+}
+
+.rojo-ficha-spoiler input:checked + label:after {
+  content: "−";
+}
+
+.rojo-ficha-contenido {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .3s ease;
+}
+
+.rojo-ficha-interior {
+  overflow: hidden;
+  min-height: 0;
+  padding: 0 13px;
+  transition: padding .3s ease;
+}
+
+.rojo-ficha-spoiler input:checked ~ .rojo-ficha-contenido {
+  grid-template-rows: 1fr;
+}
+
+.rojo-ficha-spoiler input:checked ~ .rojo-ficha-contenido .rojo-ficha-interior {
+  padding: 12px 13px;
+}
+
+.rojo-ficha-interior b {
+  font-weight: bold;
+}
+
+.rojo-ficha-regla {
+  margin: 18px 0 22px;
+  padding: 12px 8px;
+  text-align: center;
+  font-family: serif;
+  font-size: 14px;
+  color: #d5d0c5;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, #640000, #a00000, #e32636, transparent) 1;
+}
+
+.rojo-ficha-regla b {
+  color: #a00000;
+}
+
+.rojo-ficha-dominio {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.rojo-ficha-dominio-item {
+  text-align: center;
+  padding: 8px 3px;
+}
+
+.rojo-ficha-dominio-item b {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.rojo-ficha-dominio-item span {
+  display: block;
+  font-size: 13px;
+}
+
+.rojo-ficha-rango {
+  margin-top: 7px;
+  font-weight: bold;
+  color: #a00000;
+}
+
+@media (max-width: 480px) {
+  .rojo-ficha-titulo {
+    font-size: 30px;
+  }
+
+  .rojo-ficha-footer {
+    font-size: 23px;
+  }
+
+  .rojo-ficha-tabimg {
+    height: 80px;
+  }
+
+  .rojo-ficha-labeltitulo {
+    font-size: 24px;
+  }
+
+  .rojo-ficha-dominio {
+    gap: 4px;
+  }
+
+  .rojo-ficha-dominio-item {
+    font-size: 13px;
+  }
+
+  .rojo-ficha-dominio-item span {
+    font-size: 11px;
+  }
+
+  .rojo-ficha-regla {
+    font-size: 12px;
+  }
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
+
+.azul-ficha {
+  max-width: 600px;
+  width: 100%;
+  margin: 20px auto;
+  line-height: 1.5;
+}
+
+.azul-ficha * {
+  box-sizing: border-box;
+}
+
+.azul-ficha-titulo,
+.azul-ficha-footer {
+  font-family: 'UnifrakturMaguntia', cursive;
+  text-align: center;
+  line-height: 1.3;
+  background: linear-gradient(to bottom, #164e75 0%, #299acb 50%, #a4e8ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #299acb;
+}
+
+.azul-ficha-titulo {
+  font-size: 38px;
+  margin: 12px 0 18px;
+}
+
+.azul-ficha-footer {
+  font-size: 27px;
+  margin: 20px 0 8px;
+  padding-top: 12px;
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(90deg, #164e75, #299acb, #a4e8ff, transparent) 1;
+}
+
+.azul-ficha-spoiler {
+  margin-bottom: 10px;
+}
+
+.azul-ficha-spoiler input {
+  display: none;
+}
+
+.azul-ficha-spoiler label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 0;
+  background-image:
+    linear-gradient(90deg, #164e75 0%, #299acb 35%, #a4e8ff 65%, transparent 100%),
+    linear-gradient(90deg, #164e75 0%, #299acb 35%, #a4e8ff 65%, transparent 100%);
+  background-size: 100% 1px, 100% 1px;
+  background-position: top left, bottom left;
+  background-repeat: no-repeat;
+  padding: 8px 0;
+}
+
+.azul-ficha-spoiler label:before {
+  content: "";
+  position: absolute;
+  inset: 1px 0;
+  background: linear-gradient(
+    90deg,
+    rgba(22, 78, 117, .96) 0%,
+    rgba(41, 154, 203, .78) 25%,
+    rgba(164, 232, 255, .55) 50%,
+    rgba(164, 232, 255, .2) 72%,
+    rgba(164, 232, 255, 0) 100%
+  );
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1s cubic-bezier(.22, .61, .36, 1), opacity .45s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.azul-ficha-spoiler label:hover:before {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1s cubic-bezier(.22, .61, .36, 1), opacity .45s ease;
+}
+
+.azul-ficha-tabimg {
+  display: block;
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  position: relative;
+  z-index: 0;
+  opacity: 1;
+  transition: opacity .8s ease, filter .8s ease;
+}
+
+.azul-ficha-spoiler label:hover .azul-ficha-tabimg {
+  opacity: .62;
+  filter: contrast(1.04);
+  transition: opacity .8s ease, filter .8s ease;
+}
+
+.azul-ficha-labeltitulo {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: calc(100% - 65px);
+  transform: translate(-50%, -44%);
+  opacity: 0;
+  text-align: center;
+  color: #fff;
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 30px;
+  line-height: 1.2;
+  text-shadow: 0 0 5px #000, 0 0 12px #000;
+  transition: opacity .7s ease, transform .8s cubic-bezier(.22, .61, .36, 1);
+  pointer-events: none;
+}
+
+.azul-ficha-spoiler label:hover .azul-ficha-labeltitulo {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity .7s ease, transform .8s cubic-bezier(.22, .61, .36, 1);
+}
+
+.azul-ficha-spoiler label:after {
+  content: "+";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #fff;
+  z-index: 3;
+  text-shadow: 0 0 4px #164e75;
+  transition: opacity .5s ease;
+}
+
+.azul-ficha-spoiler input:checked + label:after {
+  content: "−";
+}
+
+.azul-ficha-contenido {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .3s ease;
+}
+
+.azul-ficha-interior {
+  overflow: hidden;
+  min-height: 0;
+  padding: 0 13px;
+  transition: padding .3s ease;
+}
+
+.azul-ficha-spoiler input:checked ~ .azul-ficha-contenido {
+  grid-template-rows: 1fr;
+}
+
+.azul-ficha-spoiler input:checked ~ .azul-ficha-contenido .azul-ficha-interior {
+  padding: 12px 13px;
+}
+
+.azul-ficha-interior b {
+  font-weight: bold;
+}
+
+.azul-ficha-regla {
+  margin: 18px 0 22px;
+  padding: 12px 8px;
+  text-align: center;
+  font-family: serif;
+  font-size: 14px;
+  color: #d5d0c5;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, #164e75, #299acb, #a4e8ff, transparent) 1;
+}
+
+.azul-ficha-regla b {
+  color: #299acb;
+}
+
+.azul-ficha-dominio {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.azul-ficha-dominio-item {
+  text-align: center;
+  padding: 8px 3px;
+}
+
+.azul-ficha-dominio-item b {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.azul-ficha-dominio-item span {
+  display: block;
+  font-size: 13px;
+}
+
+.azul-ficha-rango {
+  margin-top: 7px;
+  font-weight: bold;
+  color: #299acb;
+}
+
+@media (max-width: 480px) {
+  .azul-ficha-titulo {
+    font-size: 30px;
+  }
+
+  .azul-ficha-footer {
+    font-size: 23px;
+  }
+
+  .azul-ficha-tabimg {
+    height: 80px;
+  }
+
+  .azul-ficha-labeltitulo {
+    font-size: 24px;
+  }
+
+  .azul-ficha-dominio {
+    gap: 4px;
+  }
+
+  .azul-ficha-dominio-item {
+    font-size: 13px;
+  }
+
+  .azul-ficha-dominio-item span {
+    font-size: 11px;
+  }
+
+  .azul-ficha-regla {
+    font-size: 12px;
+  }
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
+
+.verde-ficha {
+  max-width: 600px;
+  width: 100%;
+  margin: 20px auto;
+  line-height: 1.5;
+}
+
+.verde-ficha * {
+  box-sizing: border-box;
+}
+
+.verde-ficha-titulo,
+.verde-ficha-footer {
+  font-family: 'UnifrakturMaguntia', cursive;
+  text-align: center;
+  line-height: 1.3;
+  background: linear-gradient(to bottom, #102f20 0%, #286b45 50%, #83c99b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #286b45;
+}
+
+.verde-ficha-titulo {
+  font-size: 38px;
+  margin: 12px 0 18px;
+}
+
+.verde-ficha-footer {
+  font-size: 27px;
+  margin: 20px 0 8px;
+  padding-top: 12px;
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(90deg, #102f20, #286b45, #83c99b, transparent) 1;
+}
+
+.verde-ficha-spoiler {
+  margin-bottom: 10px;
+}
+
+.verde-ficha-spoiler input {
+  display: none;
+}
+
+.verde-ficha-spoiler label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 0;
+  background-image:
+    linear-gradient(90deg, #102f20 0%, #286b45 35%, #83c99b 65%, transparent 100%),
+    linear-gradient(90deg, #102f20 0%, #286b45 35%, #83c99b 65%, transparent 100%);
+  background-size: 100% 1px, 100% 1px;
+  background-position: top left, bottom left;
+  background-repeat: no-repeat;
+  padding: 8px 0;
+}
+
+.verde-ficha-spoiler label:before {
+  content: "";
+  position: absolute;
+  inset: 1px 0;
+  background: linear-gradient(
+    90deg,
+    rgba(16, 47, 32, .96) 0%,
+    rgba(40, 107, 69, .82) 25%,
+    rgba(131, 201, 155, .55) 50%,
+    rgba(131, 201, 155, .2) 72%,
+    rgba(131, 201, 155, 0) 100%
+  );
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1s cubic-bezier(.22, .61, .36, 1), opacity .45s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.verde-ficha-spoiler label:hover:before {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1s cubic-bezier(.22, .61, .36, 1), opacity .45s ease;
+}
+
+.verde-ficha-tabimg {
+  display: block;
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  position: relative;
+  z-index: 0;
+  opacity: 1;
+  transition: opacity .8s ease, filter .8s ease;
+}
+
+.verde-ficha-spoiler label:hover .verde-ficha-tabimg {
+  opacity: .62;
+  filter: contrast(1.04);
+  transition: opacity .8s ease, filter .8s ease;
+}
+
+.verde-ficha-labeltitulo {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: calc(100% - 65px);
+  transform: translate(-50%, -44%);
+  opacity: 0;
+  text-align: center;
+  color: #fff;
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 30px;
+  line-height: 1.2;
+  text-shadow: 0 0 5px #000, 0 0 12px #000;
+  transition: opacity .7s ease, transform .8s cubic-bezier(.22, .61, .36, 1);
+  pointer-events: none;
+}
+
+.verde-ficha-spoiler label:hover .verde-ficha-labeltitulo {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity .7s ease, transform .8s cubic-bezier(.22, .61, .36, 1);
+}
+
+.verde-ficha-spoiler label:after {
+  content: "+";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #fff;
+  z-index: 3;
+  text-shadow: 0 0 4px #102f20;
+  transition: opacity .5s ease;
+}
+
+.verde-ficha-spoiler input:checked + label:after {
+  content: "−";
+}
+
+.verde-ficha-contenido {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .3s ease;
+}
+
+.verde-ficha-interior {
+  overflow: hidden;
+  min-height: 0;
+  padding: 0 13px;
+  transition: padding .3s ease;
+}
+
+.verde-ficha-spoiler input:checked ~ .verde-ficha-contenido {
+  grid-template-rows: 1fr;
+}
+
+.verde-ficha-spoiler input:checked ~ .verde-ficha-contenido .verde-ficha-interior {
+  padding: 12px 13px;
+}
+
+.verde-ficha-interior b {
+  font-weight: bold;
+}
+
+.verde-ficha-regla {
+  margin: 18px 0 22px;
+  padding: 12px 8px;
+  text-align: center;
+  font-family: serif;
+  font-size: 14px;
+  color: #d5d0c5;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, #102f20, #286b45, #83c99b, transparent) 1;
+}
+
+.verde-ficha-regla b {
+  color: #286b45;
+}
+
+.verde-ficha-dominio {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.verde-ficha-dominio-item {
+  text-align: center;
+  padding: 8px 3px;
+}
+
+.verde-ficha-dominio-item b {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.verde-ficha-dominio-item span {
+  display: block;
+  font-size: 13px;
+}
+
+.verde-ficha-rango {
+  margin-top: 7px;
+  font-weight: bold;
+  color: #286b45;
+}
+
+@media (max-width: 480px) {
+  .verde-ficha-titulo {
+    font-size: 30px;
+  }
+
+  .verde-ficha-footer {
+    font-size: 23px;
+  }
+
+  .verde-ficha-tabimg {
+    height: 80px;
+  }
+
+  .verde-ficha-labeltitulo {
+    font-size: 24px;
+  }
+
+  .verde-ficha-dominio {
+    gap: 4px;
+  }
+
+  .verde-ficha-dominio-item {
+    font-size: 13px;
+  }
+
+  .verde-ficha-dominio-item span {
+    font-size: 11px;
+  }
+
+  .verde-ficha-regla {
+    font-size: 12px;
+  }
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
+
+.gris-ficha {
+  max-width: 600px;
+  width: 100%;
+  margin: 20px auto;
+  line-height: 1.5;
+}
+
+.gris-ficha * {
+  box-sizing: border-box;
+}
+
+.gris-ficha-titulo,
+.gris-ficha-footer {
+  font-family: 'UnifrakturMaguntia', cursive;
+  text-align: center;
+  line-height: 1.3;
+  background: linear-gradient(to bottom, #202124 0%, #55585e 50%, #aeb3bb 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #55585e;
+}
+
+.gris-ficha-titulo {
+  font-size: 38px;
+  margin: 12px 0 18px;
+}
+
+.gris-ficha-footer {
+  font-size: 27px;
+  margin: 20px 0 8px;
+  padding-top: 12px;
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(90deg, #202124, #55585e, #aeb3bb, transparent) 1;
+}
+
+.gris-ficha-spoiler {
+  margin-bottom: 10px;
+}
+
+.gris-ficha-spoiler input {
+  display: none;
+}
+
+.gris-ficha-spoiler label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 0;
+  background-image:
+    linear-gradient(90deg, #202124 0%, #55585e 35%, #aeb3bb 65%, transparent 100%),
+    linear-gradient(90deg, #202124 0%, #55585e 35%, #aeb3bb 65%, transparent 100%);
+  background-size: 100% 1px, 100% 1px;
+  background-position: top left, bottom left;
+  background-repeat: no-repeat;
+  padding: 8px 0;
+}
+
+.gris-ficha-spoiler label:before {
+  content: "";
+  position: absolute;
+  inset: 1px 0;
+  background: linear-gradient(
+    90deg,
+    rgba(32, 33, 36, .96) 0%,
+    rgba(85, 88, 94, .82) 25%,
+    rgba(174, 179, 187, .55) 50%,
+    rgba(174, 179, 187, .2) 72%,
+    rgba(174, 179, 187, 0) 100%
+  );
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1s cubic-bezier(.22, .61, .36, 1), opacity .45s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.gris-ficha-spoiler label:hover:before {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1s cubic-bezier(.22, .61, .36, 1), opacity .45s ease;
+}
+
+.gris-ficha-tabimg {
+  display: block;
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  position: relative;
+  z-index: 0;
+  opacity: 1;
+  transition: opacity .8s ease, filter .8s ease;
+}
+
+.gris-ficha-spoiler label:hover .gris-ficha-tabimg {
+  opacity: .62;
+  filter: contrast(1.04);
+  transition: opacity .8s ease, filter .8s ease;
+}
+
+.gris-ficha-labeltitulo {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: calc(100% - 65px);
+  transform: translate(-50%, -44%);
+  opacity: 0;
+  text-align: center;
+  color: #fff;
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 30px;
+  line-height: 1.2;
+  text-shadow: 0 0 5px #000, 0 0 12px #000;
+  transition: opacity .7s ease, transform .8s cubic-bezier(.22, .61, .36, 1);
+  pointer-events: none;
+}
+
+.gris-ficha-spoiler label:hover .gris-ficha-labeltitulo {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity .7s ease, transform .8s cubic-bezier(.22, .61, .36, 1);
+}
+
+.gris-ficha-spoiler label:after {
+  content: "+";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #fff;
+  z-index: 3;
+  text-shadow: 0 0 4px #202124;
+  transition: opacity .5s ease;
+}
+
+.gris-ficha-spoiler input:checked + label:after {
+  content: "−";
+}
+
+.gris-ficha-contenido {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .3s ease;
+}
+
+.gris-ficha-interior {
+  overflow: hidden;
+  min-height: 0;
+  padding: 0 13px;
+  transition: padding .3s ease;
+}
+
+.gris-ficha-spoiler input:checked ~ .gris-ficha-contenido {
+  grid-template-rows: 1fr;
+}
+
+.gris-ficha-spoiler input:checked ~ .gris-ficha-contenido .gris-ficha-interior {
+  padding: 12px 13px;
+}
+
+.gris-ficha-interior b {
+  font-weight: bold;
+}
+
+.gris-ficha-regla {
+  margin: 18px 0 22px;
+  padding: 12px 8px;
+  text-align: center;
+  font-family: serif;
+  font-size: 14px;
+  color: #d5d0c5;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, #202124, #55585e, #aeb3bb, transparent) 1;
+}
+
+.gris-ficha-regla b {
+  color: #aeb3bb;
+}
+
+.gris-ficha-dominio {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.gris-ficha-dominio-item {
+  text-align: center;
+  padding: 8px 3px;
+}
+
+.gris-ficha-dominio-item b {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.gris-ficha-dominio-item span {
+  display: block;
+  font-size: 13px;
+}
+
+.gris-ficha-rango {
+  margin-top: 7px;
+  font-weight: bold;
+  color: #aeb3bb;
+}
+
+@media (max-width: 480px) {
+  .gris-ficha-titulo {
+    font-size: 30px;
+  }
+
+  .gris-ficha-footer {
+    font-size: 23px;
+  }
+
+  .gris-ficha-tabimg {
+    height: 80px;
+  }
+
+  .gris-ficha-labeltitulo {
+    font-size: 24px;
+  }
+
+  .gris-ficha-dominio {
+    gap: 4px;
+  }
+
+  .gris-ficha-dominio-item {
+    font-size: 13px;
+  }
+
+  .gris-ficha-dominio-item span {
+    font-size: 11px;
+  }
+
+  .gris-ficha-regla {
+    font-size: 12px;
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
+
+.amarillo-ficha {
+  max-width: 600px;
+  width: 100%;
+  margin: 20px auto;
+  line-height: 1.5;
+}
+.amarillo-ficha * {
+  box-sizing: border-box;
+}
+.amarillo-ficha-titulo,
+.amarillo-ficha-footer {
+  font-family: 'UnifrakturMaguntia', cursive;
+  text-align: center;
+  line-height: 1.3;
+  background: linear-gradient(to bottom, #705000 0%, #c49a22 50%, #ffe69a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #c49a22;
+}
+.amarillo-ficha-titulo {
+  font-size: 38px;
+  margin: 12px 0 18px;
+}
+.amarillo-ficha-footer {
+  font-size: 27px;
+  margin: 20px 0 8px;
+  padding-top: 12px;
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(90deg, #705000, #c49a22, #ffe69a, transparent) 1;
+}
+.amarillo-ficha-spoiler {
+  margin-bottom: 10px;
+}
+.amarillo-ficha-spoiler input {
+  display: none;
+}
+.amarillo-ficha-spoiler label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 0;
+  background-image:
+    linear-gradient(90deg, #705000 0%, #c49a22 35%, #ffe69a 65%, transparent 100%),
+    linear-gradient(90deg, #705000 0%, #c49a22 35%, #ffe69a 65%, transparent 100%);
+  background-size: 100% 1px, 100% 1px;
+  background-position: top left, bottom left;
+  background-repeat: no-repeat;
+  padding: 8px 0;
+}
+.amarillo-ficha-spoiler label:before {
+  content: "";
+  position: absolute;
+  inset: 1px 0;
+  background: linear-gradient(
+    90deg,
+    rgba(112, 80, 0, .96) 0%,
+    rgba(196, 154, 34, .82) 25%,
+    rgba(255, 230, 154, .55) 50%,
+    rgba(255, 230, 154, .2) 72%,
+    rgba(255, 230, 154, 0) 100%
+  );
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1s cubic-bezier(.22, .61, .36, 1), opacity .45s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+.amarillo-ficha-spoiler label:hover:before {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1s cubic-bezier(.22, .61, .36, 1), opacity .45s ease;
+}
+.amarillo-ficha-tabimg {
+  display: block;
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  position: relative;
+  z-index: 0;
+  opacity: 1;
+  transition: opacity .8s ease, filter .8s ease;
+}
+.amarillo-ficha-spoiler label:hover .amarillo-ficha-tabimg {
+  opacity: .62;
+  filter: contrast(1.04);
+  transition: opacity .8s ease, filter .8s ease;
+}
+.amarillo-ficha-labeltitulo {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: calc(100% - 65px);
+  transform: translate(-50%, -44%);
+  opacity: 0;
+  text-align: center;
+  color: #fff;
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 30px;
+  line-height: 1.2;
+  text-shadow: 0 0 5px #000, 0 0 12px #000;
+  transition: opacity .7s ease, transform .8s cubic-bezier(.22, .61, .36, 1);
+  pointer-events: none;
+}
+.amarillo-ficha-spoiler label:hover .amarillo-ficha-labeltitulo {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity .7s ease, transform .8s cubic-bezier(.22, .61, .36, 1);
+}
+.amarillo-ficha-spoiler label:after {
+  content: "+";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #fff;
+  z-index: 3;
+  text-shadow: 0 0 4px #705000;
+  transition: opacity .5s ease;
+}
+.amarillo-ficha-spoiler input:checked + label:after {
+  content: "−";
+}
+.amarillo-ficha-contenido {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .3s ease;
+}
+.amarillo-ficha-interior {
+  overflow: hidden;
+  min-height: 0;
+  padding: 0 13px;
+  transition: padding .3s ease;
+}
+.amarillo-ficha-spoiler input:checked ~ .amarillo-ficha-contenido {
+  grid-template-rows: 1fr;
+}
+.amarillo-ficha-spoiler input:checked ~ .amarillo-ficha-contenido .amarillo-ficha-interior {
+  padding: 12px 13px;
+}
+.amarillo-ficha-interior b {
+  font-weight: bold;
+}
+.amarillo-ficha-regla {
+  margin: 18px 0 22px;
+  padding: 12px 8px;
+  text-align: center;
+  font-family: serif;
+  font-size: 14px;
+  color: #d5d0c5;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, #705000, #c49a22, #ffe69a, transparent) 1;
+}
+.amarillo-ficha-regla b {
+  color: #c49a22;
+}
+.amarillo-ficha-dominio {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+.amarillo-ficha-dominio-item {
+  text-align: center;
+  padding: 8px 3px;
+}
+.amarillo-ficha-dominio-item b {
+  display: block;
+  margin-bottom: 4px;
+}
+.amarillo-ficha-dominio-item span {
+  display: block;
+  font-size: 13px;
+}
+.amarillo-ficha-rango {
+  margin-top: 7px;
+  font-weight: bold;
+  color: #c49a22;
+}
+@media (max-width: 480px) {
+  .amarillo-ficha-titulo {
+    font-size: 30px;
+  }
+  .amarillo-ficha-footer {
+    font-size: 23px;
+  }
+  .amarillo-ficha-tabimg {
+    height: 80px;
+  }
+  .amarillo-ficha-labeltitulo {
+    font-size: 24px;
+  }
+  .amarillo-ficha-dominio {
+    gap: 4px;
+  }
+  .amarillo-ficha-dominio-item {
+    font-size: 13px;
+  }
+  .amarillo-ficha-dominio-item span {
+    font-size: 11px;
+  }
+  .amarillo-ficha-regla {
+    font-size: 12px;
+  }
+}
